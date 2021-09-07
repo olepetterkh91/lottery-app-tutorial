@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import UserSelectedNumbers from "./UserSelectedNumbers";
 import WinningDraw from "./WinningDraw";
 
 function Lottery() {
 	const numbers = generateNumbersArray(40);
 	const [selectedNumbers, setSelectedNumbers] = useState([]);
 	const [winningNumbers, setWinningNumbers] = useState([]);
+	const [userSelectedNumbersArray, setUserSelectedNumbersArray] = useState([])
 
 	function generateNumbersArray(total) {
 		// Generate all lottery numbers
@@ -64,6 +66,11 @@ function Lottery() {
 
 	return (
 		<div className="container">
+			<UserSelectedNumbers
+				winningNumbers={winningNumbers} 
+				randomNumbers={userSelectedNumbersArray} 
+				setRandomNumbers={setUserSelectedNumbersArray} 
+			/>
 			<button onClick={generateWinningNumbers}>Draw</button>
 			{winningNumbers && (
 				<React.Fragment>
