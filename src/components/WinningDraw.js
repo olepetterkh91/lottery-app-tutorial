@@ -5,6 +5,7 @@ function WinningDraw({ winningNumbers, selectedNumbers }) {
 
 	return (
 		<div className="row">
+			<div className="col-3"></div>
 			{winningNumbers?.map((num, index) => {
 				return (
 					<div className="col-1 p-3" key={index}>

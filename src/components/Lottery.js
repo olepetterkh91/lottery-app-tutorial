@@ -66,22 +66,24 @@ function Lottery() {
 
 	return (
 		<div className="container">
+			{winningNumbers && (
+				<React.Fragment>
+					<h2 className="text-center">Winning numbers</h2>
+					<div className="">
+						<WinningDraw
+							winningNumbers={winningNumbers}
+							selectedNumbers={selectedNumbers}
+						/>
+					</div>
+				</React.Fragment>
+			)}
+			<button className="btn btn-lg btn-success" onClick={generateWinningNumbers}>Draw</button>
+			<h2>Your selected numbers</h2>
 			<UserSelectedNumbers
 				winningNumbers={winningNumbers} 
 				randomNumbers={userSelectedNumbersArray} 
 				setRandomNumbers={setUserSelectedNumbersArray} 
 			/>
-			<button onClick={generateWinningNumbers}>Draw</button>
-			{winningNumbers && (
-				<React.Fragment>
-					<h2>Winning numbers</h2>
-					<WinningDraw
-						winningNumbers={winningNumbers}
-						selectedNumbers={selectedNumbers}
-					/>
-				</React.Fragment>
-			)}
-			<h2>Your selected numbers</h2>
 			<div className="row">
 				{selectedNumbers?.map((num, index) => {
 					return (

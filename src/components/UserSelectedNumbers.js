@@ -4,13 +4,24 @@ import { generateArrayOfNumbers, generateNumbersArray, generateRandomUserNumbers
 function UserSelectedNumbers({randomNumbers, setRandomNumbers, winningNumbers}) {
 
     useEffect(() => {
+        redrawNumbers()
+    }, [])
+
+    function isNumberWinner(number) {
+        return winningNumbers?.includes(number)
+    }
+
+    function redrawNumbers() {
         const userLotteryNumbersArray = generateRandomUserNumbers()
         console.log(userLotteryNumbersArray, "USERLOTTERY NUMBERS ARRAY")
         setRandomNumbers(userLotteryNumbersArray)
-    }, [])
+    }
 
     return (
         <div>
+            <div>
+                <button className="btn btn-primary" onClick={redrawNumbers}>Draw new numbers</button>
+            </div>
             {randomNumbers?.map((row, index) => {
                 return (
                     <div key={index} className="row">
@@ -19,7 +30,7 @@ function UserSelectedNumbers({randomNumbers, setRandomNumbers, winningNumbers}) 
                             return (
                                 <div className="col-1 p-3" key={index}>
                                 <div
-                                    className={`bg-danger text-center text-white rounded-circle`}
+                                    className={`bg-${isNumberWinner(num) ? "danger" : "success"} text-center text-white rounded-circle`}
                                     style={{
                                         width: "60px",
                                         height: "60px",
